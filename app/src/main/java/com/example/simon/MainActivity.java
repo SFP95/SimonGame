@@ -21,8 +21,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnComenzar = findViewById(R.id.btnComenzar);
-        btnConfigurar = findViewById(R.id.btnConfigurar);
+        asignartvs();
+        asignarBotonesFuncioens();
+        asignarYcolorearBotonesColores();
 
     }
 
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
         btnAmarillo = findViewById(R.id.btnAmarillo);
         btnAzul = findViewById(R.id.btnAzul);
         btnVerde = findViewById(R.id.btnVerde);
-
+    }
+    public void asignartvs(){
+        tvScore=findViewById(R.id.tvScore);
+        tvHiScore=findViewById(R.id.tvhiScore);
+        tvTime=findViewById(R.id.tvTime);
     }
 }
