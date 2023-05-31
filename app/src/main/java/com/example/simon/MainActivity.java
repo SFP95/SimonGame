@@ -42,4 +42,22 @@ public class MainActivity extends AppCompatActivity {
         tvHiScore=findViewById(R.id.tvhiScore);
         tvTime=findViewById(R.id.tvTime);
     }
+
+    public void onRojo(View view) {
+    }
+
+    public void onAma(View view) {
+    }
+
+    public void onVerde(View view) {
+    }
+
+    public void onAzul(View view) {
+    }
+
+    public void onComenzar(View view) {
+    }
+
+    public void onConfigurar(View view) {
+    }
 }
