@@ -5,15 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.graphics.Color;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.simon.ConfigActivity;
-import com.example.simon.GameActivity;
-
 public class MainActivity extends AppCompatActivity {
-    private Button btnComenzar;
-    private Button btnConfigurar;
+    private Button btnComenzar, btnConfigurar;
+    private Button btnRojo, btnVerde, btnAmarillo, btnAzul;
+    private TextView tvTime, tvScore, tvHiScore;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,22 +24,17 @@ public class MainActivity extends AppCompatActivity {
         btnComenzar = findViewById(R.id.btnComenzar);
         btnConfigurar = findViewById(R.id.btnConfigurar);
 
-        btnComenzar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnComenzar.setVisibility(View.INVISIBLE);
-                btnConfigurar.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(intent);
-            }
-        });
+    }
 
-        btnConfigurar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ConfigActivity.class);
-                startActivity(intent);
-            }
-        });
+    public void asignarBotonesFuncioens() {
+        btnComenzar = findViewById(R.id.btnComenzar);
+        btnConfigurar = findViewById(R.id.btnConfigurar);
+    }
+    public void asignarYcolorearBotonesColores() {
+        btnRojo = findViewById(R.id.btnRojo);
+        btnAmarillo = findViewById(R.id.btnAmarillo);
+        btnAzul = findViewById(R.id.btnAzul);
+        btnVerde = findViewById(R.id.btnVerde);
+
     }
 }
