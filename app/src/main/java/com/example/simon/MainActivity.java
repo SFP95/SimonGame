@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Integer> secuenciaAleatoria;
     private List<Integer> secuenciaUsuario;
     private int puntuacion;
-    private int tiempoJuego = 60000;
+    private int remainingTime = 60;
+    private CountDownTimer countDownTimer;
     private int tiempoPersistenciaColor = 500;
     private int tiempoEsperaColor = 50;
     private int puntuacionMaxima;
@@ -37,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         asignarVistas();
-        asignarBotonesFunciones();
-        asignarBotonesColores();
+
         inhabilitarBotonesColores();
 
         // Cargar la puntuación máxima guardada
@@ -47,6 +47,47 @@ public class MainActivity extends AppCompatActivity {
         // Configurar el juego inicialmente
         configurarJuego();
     }
+    public void onComenzar(View view) {
+        iniciarJuego();
+        IniciarTiempo();
+    }
+
+    private void IniciarTiempo() {
+        countDownTimer = new CountDownTimer(remainingTime * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                remainingTime--;
+                tvTime.setText(String.valueOf(remainingTime));
+                if (remainingTime == 0) {
+                    cancel();
+                    tvTime.setText("0");
+                    Toast.makeText(this"TIEMPO AGOTADO",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                // No se ejecutará en este caso
+            }
+        }.start();
+    }
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+    public void onConfigurar(View view) {
+        abrirActividadConfiguracion();
+    }
+
+    public void onAma(View view) { registrarRespuesta(Color.YELLOW); }
+
+    public void onRojo(View view) {registrarRespuesta(Color.RED);}
+
+    public void onVerde(View view) { registrarRespuesta(Color.GREEN);}
+
+    public void onAzul(View view) { registrarRespuesta(Color.BLUE);}
 
     private void asignarVistas() {
         btnComenzar = findViewById(R.id.btnComenzar);
@@ -60,52 +101,6 @@ public class MainActivity extends AppCompatActivity {
         tvHiScore = findViewById(R.id.tvhiScore);
     }
 
-    private void asignarBotonesFunciones() {
-        btnComenzar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iniciarJuego();
-            }
-        });
-
-        btnConfigurar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Abrir la actividad de configuración
-                abrirActividadConfiguracion();
-            }
-        });
-    }
-
-    private void asignarBotonesColores() {
-        btnRojo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registrarRespuesta(Color.RED);
-            }
-        });
-
-        btnAmarillo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registrarRespuesta(Color.YELLOW);
-            }
-        });
-
-        btnAzul.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registrarRespuesta(Color.BLUE);
-            }
-        });
-
-        btnVerde.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registrarRespuesta(Color.GREEN);
-            }
-        });
-    }
 
     private void inhabilitarBotonesColores() {
         btnAmarillo.setVisibility(View.INVISIBLE);
@@ -121,12 +116,14 @@ public class MainActivity extends AppCompatActivity {
         btnRojo.setVisibility(View.VISIBLE);
     }
 
-    private void iniciarJuego() {
+    private void iniciarJuego() {  //AJUSTAR ESTO
         // Reiniciar la puntuación y las secuencias
         puntuacion = 0;
         secuenciaAleatoria = new ArrayList<>();
         secuenciaUsuario = new ArrayList<>();
 
+        //1º
+        ocultarColores();
         // Generar la primera secuencia aleatoria
         generarSecuenciaAleatoria();
 
@@ -135,11 +132,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Mostrar el mensaje "TU TURNO" y habilitar los botones de colores
         Toast.makeText(MainActivity.this, "TU TURNO", Toast.LENGTH_SHORT).show();
+
+        //ultimo
         habilitarBotonesColores();
     }
 
-    private void generarSecuenciaAleatoria() {
-        Random random = new Random();
+    private void generarSecuenciaAleatoria() { //POR REVISAR
+        /*Random random = new Random();*/
 
         for (int i = 0; i < 4; i++) {
             int color = generarColorAleatorio();
@@ -154,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         return colores[indice];
     }
 
-    private void reproducirSecuencia() {
+    private void reproducirSecuencia() {  //REVISAR
         new CountDownTimer(secuenciaAleatoria.size() * (tiempoPersistenciaColor + tiempoEsperaColor), tiempoPersistenciaColor + tiempoEsperaColor) {
             int indiceColor = 0;
 
@@ -273,4 +272,7 @@ public class MainActivity extends AppCompatActivity {
         // ...
         return 0;
     }
+
+
+
 }
