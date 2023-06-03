@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
         android:layout_marginTop="36dp"
-        android:hint="16"
+        android:hint="60"
         android:textAlignment="center"
         android:textColor="#595757"
         android:textColorHint="#595757"
