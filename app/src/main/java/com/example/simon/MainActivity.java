@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 if (remainingTime == 0) {
                     cancel();
                     tvTime.setText("0");
-                    Toast.makeText(this"TIEMPO AGOTADO",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"TIEMPO AGOTADO",Toast.LENGTH_SHORT).show();
                 }
             }
 
