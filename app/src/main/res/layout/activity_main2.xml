@@ -140,35 +140,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
-    <TextView
-        android:id="@+id/tvResPuntuacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Resetear puntuación \nmas alta :"
-        android:textColor="#131313"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline12" />
-
-    <EditText
-        android:id="@+id/editTextText4"
-        android:layout_width="157dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:hint="0"
-        android:inputType="number"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="#131313"
-        android:textColorHint="#333333"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline10"
-        app:layout_constraintTop_toTopOf="@+id/guideline12" />
-
     <RadioGroup
         android:id="@+id/rgSonio"
         android:layout_width="0dp"
@@ -203,4 +174,29 @@
             android:textColorHighlight="#3F51B5"
             android:textSize="24sp" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/bntReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onReset"
+        android:text="@string/resetear_puntuacion"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMaxPuntuacion" />
+
+    <TextView
+        android:id="@+id/tvMaxPuntuacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="La máxima puntuación es de : 300"
+        android:textColor="#131313"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline12" />
 </androidx.constraintlayout.widget.ConstraintLayout>
