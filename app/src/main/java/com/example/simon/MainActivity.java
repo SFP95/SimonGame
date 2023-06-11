@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         abrirActividadConfiguracion();
     }
 
-
     public void onAma(View view) {
         registrarRespuesta(Color.YELLOW);
         if (enableSound) {
