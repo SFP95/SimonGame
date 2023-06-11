@@ -3,6 +3,7 @@ package com.example.simon;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnComenzar, btnConfigurar;
     private Button btnRojo, btnVerde, btnAmarillo, btnAzul;
     private TextView tvTime, tvScore, tvHiScore;
-
+    private boolean enableSound = false;
     private List<Integer> secuenciaAleatoria;
     private List<Integer> secuenciaUsuario;
     private int puntuacion;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private int tiempoEsperaColor = 50;
     private int puntuacionMaxima;
     private boolean sonidosActivados;
+    private static final int REQUEST_CODE_SECOND_ACTIVITY = 1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -72,23 +74,45 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
     }
+
     protected void onDestroy() {
         super.onDestroy();
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
     }
+
     public void onConfigurar(View view) {
         abrirActividadConfiguracion();
     }
 
-    public void onAma(View view) { registrarRespuesta(Color.YELLOW); }
+    public void onAma(View view) { registrarRespuesta(Color.YELLOW);
+        if (enableSound) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.SD_NAVIGATE_51);
+            mediaPlayer.start();
+        }
+    }
 
-    public void onRojo(View view) {registrarRespuesta(Color.RED);}
+    public void onRojo(View view) {registrarRespuesta(Color.RED);
+        if (enableSound) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.SD_NAVIGATE_52);
+            mediaPlayer.start();
+        }
+    }
 
-    public void onVerde(View view) { registrarRespuesta(Color.GREEN);}
+    public void onVerde(View view) { registrarRespuesta(Color.GREEN);
+        if (enableSound) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.SD_NAVIGATE_54);
+            mediaPlayer.start();
+        }
+    }
 
-    public void onAzul(View view) { registrarRespuesta(Color.BLUE);}
+    public void onAzul(View view) { registrarRespuesta(Color.BLUE);
+        if (enableSound) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.SD_NAVIGATE_57);
+            mediaPlayer.start();
+        }
+    }
 
     private void asignarVistas() {
         btnComenzar = findViewById(R.id.btnComenzar);
@@ -101,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
         tvScore = findViewById(R.id.tvScore);
         tvHiScore = findViewById(R.id.tvhiScore);
     }
-
 
     private void inhabilitarBotonesColores() {
         btnAmarillo.setVisibility(View.INVISIBLE);
@@ -277,6 +300,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        if (requestCode == REQUEST_CODE_SECOND_ACTIVITY && resultCode == MainActivity.RESULT_OK) {
+            if (data != null) {
+                enableSound = data.getBooleanExtra("ENABLE_SOUND", false);
+            }
+        }
     }
 }

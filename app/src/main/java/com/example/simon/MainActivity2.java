@@ -37,4 +37,14 @@ public class MainActivity2 extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra("reset",puntuacion);
     }
+
+
+    public void onVolver(View view) {
+        int SelectId = rgSonido.getCheckedRadioButtonId();
+        boolean enableSound = SelectId == R.id.checkSi;
+        Intent intent = new Intent();
+        intent.putExtra("ENABLE_SOUND", enableSound);
+        setResult(MainActivity.RESULT_OK, intent);
+        finish();
+    }
 }

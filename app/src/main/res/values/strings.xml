@@ -3,4 +3,6 @@
     <string name="comenzar">comenzar</string>
     <string name="configurar">configurar</string>
     <string name="resetear_puntuacion">Resetear puntuacion</string>
+    <string name="volver">Volver</string>
+    <string name="la_m_xima_puntuaci_n_es_de_300">La máxima puntuación es de : 300</string>
 </resources>
