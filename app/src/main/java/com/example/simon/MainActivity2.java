@@ -42,9 +42,10 @@ public class MainActivity2 extends AppCompatActivity {
     public void onVolver(View view) {
         int SelectId = rgSonido.getCheckedRadioButtonId();
         boolean enableSound = SelectId == R.id.checkSi;
-        Intent intent = new Intent();
+        Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("ENABLE_SOUND", enableSound);
         setResult(MainActivity.RESULT_OK, intent);
+        startActivity(intent);
         finish();
     }
 }

@@ -3,7 +3,9 @@ package com.example.simon;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -86,34 +88,38 @@ public class MainActivity extends AppCompatActivity {
         abrirActividadConfiguracion();
     }
 
-    public void onAma(View view) { registrarRespuesta(Color.YELLOW);
+
+    public void onAma(View view) {
+        registrarRespuesta(Color.YELLOW);
         if (enableSound) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.SD_NAVIGATE_51);
-            mediaPlayer.start();
+            ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME);
+            toneGenerator.startTone(ToneGenerator.TONE_DTMF_A, 200);
         }
     }
 
-    public void onRojo(View view) {registrarRespuesta(Color.RED);
+    public void onRojo(View view) {
+        registrarRespuesta(Color.RED);
         if (enableSound) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.SD_NAVIGATE_52);
-            mediaPlayer.start();
+            ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME);
+            toneGenerator.startTone(ToneGenerator.TONE_DTMF_B, 200);
         }
     }
 
-    public void onVerde(View view) { registrarRespuesta(Color.GREEN);
+    public void onVerde(View view) {
+        registrarRespuesta(Color.GREEN);
         if (enableSound) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.SD_NAVIGATE_54);
-            mediaPlayer.start();
+            ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME);
+            toneGenerator.startTone(ToneGenerator.TONE_DTMF_C, 200);
         }
     }
 
-    public void onAzul(View view) { registrarRespuesta(Color.BLUE);
+    public void onAzul(View view) {
+        registrarRespuesta(Color.BLUE);
         if (enableSound) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.SD_NAVIGATE_57);
-            mediaPlayer.start();
+            ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_SYSTEM, ToneGenerator.MAX_VOLUME);
+            toneGenerator.startTone(ToneGenerator.TONE_DTMF_D, 200);
         }
     }
-
     private void asignarVistas() {
         btnComenzar = findViewById(R.id.btnComenzar);
         btnConfigurar = findViewById(R.id.btnConfigurar);
@@ -300,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SECOND_ACTIVITY && resultCode == MainActivity.RESULT_OK) {
+        if (requestCode == REQUEST_CODE_SECOND_ACTIVITY && resultCode == MainActivity2.RESULT_OK) {
             if (data != null) {
                 enableSound = data.getBooleanExtra("ENABLE_SOUND", false);
             }
